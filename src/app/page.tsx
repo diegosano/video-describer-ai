@@ -1,34 +1,38 @@
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Separator } from '@/components/ui/separator';
-import { FileVideo, Github, Upload, Wand2 } from 'lucide-react';
+import { FileVideo, Github, Upload, Wand2 } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Separator } from '@/components/ui/separator'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Slider } from '@/components/ui/slider';
+} from '@/components/ui/select'
+import { Slider } from '@/components/ui/slider'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="px-6 py-3 flex items-center justify-between border-b">
+    <div className="flex min-h-screen flex-col">
+      <div className="flex items-center justify-between border-b px-6 py-3">
         <h1 className="text-xl font-bold">videodescriber.ai</h1>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
+
           <Button variant="outline">
-            <Github className="w-4 h-4 mr-2" />
+            <Github className="mr-2 h-4 w-4" />
             GitHub
           </Button>
         </div>
       </div>
 
-      <main className="p-6  flex gap-6 flex-1">
-        <div className="flex flex-col flex-1 gap-4">
-          <div className="grid grid-rows-2 gap-4 flex-1">
+      <main className="flex  flex-1 gap-6 p-6">
+        <div className="flex flex-1 flex-col gap-4">
+          <div className="grid flex-1 grid-rows-2 gap-4">
             <Textarea
               className="resize-none p-4 leading-relaxed"
               placeholder="Inclua o prompt para a IA"
@@ -52,7 +56,7 @@ export default function Home() {
           <form className="space-y-6">
             <label
               htmlFor="video"
-              className="border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5"
+              className="flex aspect-video cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed text-sm text-muted-foreground hover:bg-primary/5"
             >
               <FileVideo className="h-4 w-4" />
               Selecione um vídeo
@@ -74,12 +78,12 @@ export default function Home() {
 
               <Textarea
                 id="transcription_prompt"
-                className="h-20 leading-relaxed resize-none"
+                className="h-20 resize-none leading-relaxed"
                 placeholder="Include palavras-chave mencionadas no vídeo separadas por vírgula (,)"
               />
 
               <Button type="submit" className="w-full">
-                <Upload className="w-4 h-4 mr-2" />
+                <Upload className="mr-2 h-4 w-4" />
                 Carregar vídeo
               </Button>
             </div>
@@ -111,7 +115,7 @@ export default function Home() {
                 </SelectContent>
               </Select>
 
-              <span className="block text-xs text-muted-foreground italic">
+              <span className="block text-xs italic text-muted-foreground">
                 Você poderá customizar essa opção em breve
               </span>
             </div>
@@ -121,9 +125,9 @@ export default function Home() {
             <div className="space-y-4">
               <Label>Temperatura</Label>
 
-              <Slider min={0} max={1} step={0.1}  defaultValue={[0.5]} />
+              <Slider min={0} max={1} step={0.1} defaultValue={[0.5]} />
 
-              <span className="block text-xs text-muted-foreground italic leading-relaxed">
+              <span className="block text-xs italic leading-relaxed text-muted-foreground">
                 Valores mais altos tendem a deixar o resultado mais criativo,
                 porém com possíveis erros
               </span>
@@ -132,12 +136,12 @@ export default function Home() {
             <Separator />
 
             <Button type="submit" className="w-full">
-              <Wand2 className="w-4 h-4 mr-2" />
+              <Wand2 className="mr-2 h-4 w-4" />
               Executar
             </Button>
           </form>
         </aside>
       </main>
     </div>
-  );
+  )
 }
