@@ -16,7 +16,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       <div className="flex items-center justify-between border-b px-6 py-3">
         <h1 className="text-xl font-bold">videodescriber.ai</h1>
 
@@ -79,7 +79,7 @@ export default function Home() {
               <Textarea
                 id="transcription_prompt"
                 className="h-20 resize-none leading-relaxed"
-                placeholder="Include palavras-chave mencionadas no vídeo separadas por vírgula (,)"
+                placeholder="Inclua palavras-chave mencionadas no vídeo separadas por vírgula (,)"
               />
 
               <Button type="submit" className="w-full">
