@@ -1,4 +1,6 @@
-import { FileVideo, Github, Upload, Wand2 } from 'lucide-react'
+'use client'
+
+import { Github, Wand2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -13,8 +15,30 @@ import {
 } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { VideoInputForm } from '@/components/video-input-form'
+import { PromptSelect } from '@/components/prompt-select'
+import { useState } from 'react'
+import { useCompletion } from 'ai/react'
 
 export default function Home() {
+  const [temperature, setTemperature] = useState(0.5)
+  const [videoId, setVideoId] = useState<string | null>(null)
+
+  const {
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    completion,
+    isLoading,
+  } = useCompletion({
+    api: 'http://localhost:3000/api/videos/generate',
+    body: {
+      videoId,
+      temperature,
+    },
+  })
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between border-b px-6 py-3">
@@ -23,9 +47,15 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <ThemeToggle />
 
-          <Button variant="outline">
-            <Github className="mr-2 h-4 w-4" />
-            GitHub
+          <Button variant="outline" asChild>
+            <a
+              href="https://github.com/diegosano/video-describer-ai"
+              target="_blank"
+              referrerPolicy="no-referrer"
+            >
+              <Github className="mr-2 h-4 w-4" />
+              GitHub
+            </a>
           </Button>
         </div>
       </div>
@@ -36,10 +66,13 @@ export default function Home() {
             <Textarea
               className="resize-none p-4 leading-relaxed"
               placeholder="Inclua o prompt para a IA"
+              value={input}
+              onChange={handleInputChange}
             />
             <Textarea
               className="resize-none p-4 leading-relaxed"
               placeholder="Resultado gerado pela IA"
+              value={completion}
               readOnly
             />
           </div>
@@ -53,54 +86,15 @@ export default function Home() {
         </div>
 
         <aside className="w-80 space-y-6">
-          <form className="space-y-6">
-            <label
-              htmlFor="video"
-              className="flex aspect-video cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed text-sm text-muted-foreground hover:bg-primary/5"
-            >
-              <FileVideo className="h-4 w-4" />
-              Selecione um vídeo
-            </label>
-
-            <input
-              type="file"
-              id="video"
-              accept="video/mp4"
-              className="sr-only"
-            />
-
-            <Separator />
-
-            <div className="space-y-2">
-              <Label htmlFor="transcription_prompt">
-                Prompt de transcrição
-              </Label>
-
-              <Textarea
-                id="transcription_prompt"
-                className="h-20 resize-none leading-relaxed"
-                placeholder="Inclua palavras-chave mencionadas no vídeo separadas por vírgula (,)"
-              />
-
-              <Button type="submit" className="w-full">
-                <Upload className="mr-2 h-4 w-4" />
-                Carregar vídeo
-              </Button>
-            </div>
-          </form>
+          <VideoInputForm onVideoUpload={setVideoId} />
 
           <Separator />
 
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label>Prompt</Label>
 
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione um prompt" />
-                </SelectTrigger>
-                <SelectContent></SelectContent>
-              </Select>
+              <PromptSelect onPromptSelect={setInput} />
             </div>
 
             <div className="space-y-2">
@@ -125,7 +119,14 @@ export default function Home() {
             <div className="space-y-4">
               <Label>Temperatura</Label>
 
-              <Slider min={0} max={1} step={0.1} defaultValue={[0.5]} />
+              <Slider
+                min={0}
+                max={1}
+                step={0.1}
+                defaultValue={[0.5]}
+                value={[temperature]}
+                onValueChange={(value) => setTemperature(value[0])}
+              />
 
               <span className="block text-xs italic leading-relaxed text-muted-foreground">
                 Valores mais altos tendem a deixar o resultado mais criativo,
@@ -135,7 +136,11 @@ export default function Home() {
 
             <Separator />
 
-            <Button type="submit" className="w-full">
+            <Button
+              disabled={isLoading || !videoId}
+              type="submit"
+              className="w-full"
+            >
               <Wand2 className="mr-2 h-4 w-4" />
               Executar
             </Button>
