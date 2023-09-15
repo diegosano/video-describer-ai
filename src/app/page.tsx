@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+import { useCompletion } from 'ai/react'
 import { Github, Wand2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -17,8 +19,6 @@ import { Slider } from '@/components/ui/slider'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { VideoInputForm } from '@/components/video-input-form'
 import { PromptSelect } from '@/components/prompt-select'
-import { useState } from 'react'
-import { useCompletion } from 'ai/react'
 
 export default function Home() {
   const [temperature, setTemperature] = useState(0.5)
@@ -32,7 +32,7 @@ export default function Home() {
     completion,
     isLoading,
   } = useCompletion({
-    api: 'http://localhost:3000/api/videos/generate',
+    api: `${process.env.NEXT_PUBLIC_APP_URL}/api/videos/generate`,
     body: {
       videoId,
       temperature,
@@ -47,14 +47,14 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <ThemeToggle />
 
-          <Button variant="outline" asChild>
+          <Button variant="outline" size="icon" asChild>
             <a
               href="https://github.com/diegosano/video-describer-ai"
               target="_blank"
               referrerPolicy="no-referrer"
             >
-              <Github className="mr-2 h-4 w-4" />
-              GitHub
+              <Github className="h-4 w-4 " />
+              <span className="sr-only">Link do repositório no GitHub</span>
             </a>
           </Button>
         </div>

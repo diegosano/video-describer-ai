@@ -2,13 +2,13 @@
 
 import { ChangeEvent, FormEvent, useMemo, useRef, useState } from 'react'
 import { FileVideo, Upload } from 'lucide-react'
+import { fetchFile } from '@ffmpeg/util'
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { getFFmpeg } from '@/lib/ffmpeg'
-import { fetchFile } from '@ffmpeg/util'
 import { api } from '@/lib/axios'
 
 type Status = 'waiting' | 'converting' | 'uploading' | 'generating' | 'success'
@@ -75,6 +75,7 @@ export function VideoInputForm({ onVideoUpload }: VideoInputFormProps) {
     const selectedFile = files[0]
 
     setVideoFile(selectedFile)
+    setStatus('waiting')
   }
 
   async function handleUploadVideo(event: FormEvent<HTMLFormElement>) {
@@ -98,10 +99,6 @@ export function VideoInputForm({ onVideoUpload }: VideoInputFormProps) {
       setStatus('uploading')
 
       const response = await api.post('/videos', data)
-
-      console.log({
-        response,
-      })
 
       const videoId = response.data.video.id
 
