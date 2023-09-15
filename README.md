@@ -19,6 +19,7 @@ This is a web application built with Next.js, Tailwind CSS, Vercel AI, OpenAI, S
 - [ ] Add option to change OpenAI model
 - [ ] Mobile friendly
 - [ ] Add payments with Stripe
+- [ ] Improve React Server Components to replace useEffect API calls
 
 ## Getting Started
 
