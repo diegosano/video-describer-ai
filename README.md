@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# VideoDescriber AI
+
+## Overview
+
+This is a web application built with Next.js, Tailwind CSS, Vercel AI, OpenAI, Supabase, and UploadThing. It allows users to upload videos and generate transcriptions for easier content creation.
+
+## Features
+
+- User-friendly video upload interface using UploadThing.
+- Automatic transcription of uploaded videos using OpenAI.
+- AI-powered prompt templates for generating titles and descriptions.
+- Secure data storage and management with Supabase.
+- Written in TypeScript for type-safe development.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up and run the project on your local machine:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Clone the Repository
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/diegosano/video-describer-ai
+   cd video-describer-ai
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Install Dependencies
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+    pnpm install
+   ```
 
-## Learn More
+### Configure Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Clone .env.example and rename to .env
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+    pnpm dev
+   ```
 
-## Deploy on Vercel
+## Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vercel AI](https://sdk.vercel.ai/)
+- [OpenAI](https://platform.openai.com/docs/api-reference)
+- [Supabase](supabase.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [UploadThing](uploadthing.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+This project is licensed under the [MIT](/LICENSE) License.
