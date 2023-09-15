@@ -15,10 +15,10 @@ This is a web application built with Next.js, Tailwind CSS, Vercel AI, OpenAI, S
 ## Roadmap
 
 - [x] Dark mode
-- [] Add authentication
-- [] Add option to change OpenAI model
-- [] Mobile friendly
-- [] Add payments with Stripe
+- [ ] Add authentication
+- [ ] Add option to change OpenAI model
+- [ ] Mobile friendly
+- [ ] Add payments with Stripe
 
 ## Getting Started
 
