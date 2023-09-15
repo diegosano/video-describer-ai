@@ -12,28 +12,34 @@ This is a web application built with Next.js, Tailwind CSS, Vercel AI, OpenAI, S
 - Secure data storage and management with Supabase.
 - Written in TypeScript for type-safe development.
 
+## Roadmap
+
+- [x] Dark mode
+- [] Add authentication
+- [] Add option to change OpenAI model
+- [] Mobile friendly
+- [] Add payments with Stripe
+
 ## Getting Started
 
 Follow these steps to set up and run the project on your local machine:
 
-### Clone the Repository
+Clone the repository
 
    ```bash
    git clone https://github.com/diegosano/video-describer-ai
    cd video-describer-ai
    ```
 
-### Install Dependencies
+Install dependencies
 
    ```bash
     pnpm install
    ```
 
-### Configure Environment Variables
-
 Clone .env.example and rename to .env
 
-### Run the Application
+Run the application
 
    ```bash
     pnpm dev
