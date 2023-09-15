@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       },
     })
 
-    const response = await fetch(video.path)
+    const response = await fetch(video.url)
 
     const { text: transcription } = await openai.audio.transcriptions.create({
       file: response,
